@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mobilia | Özel Ölçü Mobilya Tasarımı</title>
+  <meta name="description" content="Antalya içi özel ölçü mobilya tasarımı ve üretimi - Mutfak, Gardırop, TV Ünitesi, Vestiyer" />
+  <meta name="author" content="Mobilia" />
+  <link rel="canonical" href="https://mobilia.com.tr/" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <!-- AOS animasyonlar için -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Focus için ring efekti */
+    a:focus, button:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.75);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 scroll-smooth">
+
+  <!-- Navbar -->
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-md z-50" x-data="{ open: false }">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    
+    <!-- Logo -->
+    <a href="#" class="text-2xl font-extrabold text-yellow-600 hover:text-yellow-700 transition" aria-label="Mobilia Ana Sayfa">
+      <img src="img/logo.png" alt="Mobilia Logo" class="h-10">
+    </a>
+
+    <!-- Masaüstü Menü -->
+    <ul class="hidden md:flex space-x-8 font-semibold text-gray-700">
+      <li><a href="#hero" class="hover:text-yellow-600 transition">Anasayfa</a></li>
+      <li><a href="#services" class="hover:text-yellow-600 transition">Hizmetler</a></li>
+      <li><a href="#projects" class="hover:text-yellow-600 transition">Projeler</a></li>
+      <li><a href="#contact" class="hover:text-yellow-600 transition">İletişim</a></li>
+    </ul>
+
+    <!-- Mobil Menü Butonu -->
+    <button @click="open = !open" class="md:hidden text-gray-700 hover:text-yellow-600 focus:outline-none" aria-label="Menüyü Aç/Kapat">
+      <svg xmlns="http://www.w3.org/2000/svg" :class="open ? 'hidden' : 'block'" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" :class="open ? 'block' : 'hidden'" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobil Açılır Menü -->
+  <div x-show="open" class="md:hidden px-6 pt-2 pb-4 space-y-3 font-semibold text-gray-700 bg-white bg-opacity-95 backdrop-blur-sm shadow-md">
+    <a href="#hero" class="block hover:text-yellow-600 transition">Anasayfa</a>
+    <a href="#services" class="block hover:text-yellow-600 transition">Hizmetler</a>
+    <a href="#projects" class="block hover:text-yellow-600 transition">Projeler</a>
+    <a href="#contact" class="block hover:text-yellow-600 transition">İletişim</a>
+  </div>
+</nav>
+
+
+  <!-- Hero -->
+  <section id="hero" class="relative bg-cover bg-center min-h-screen flex items-center justify-center text-white pt-20" style="background-image: url('img/bg.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+    <div class="relative z-10 text-center px-6 max-w-3xl" data-aos="fade-up" data-aos-duration="1500">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">Özel Ölçü Mobilya Tasarımı</h1>
+      <p class="text-lg md:text-2xl mb-8 drop-shadow-md">Antalya bölgesinde proje ve üretim – Mutfak, Gardırop, TV Ünitesi, Vestiyer</p>
+      <a href="https://wa.me/905306675659" target="_blank" rel="noopener noreferrer" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-full transition transform hover:scale-105 focus:ring-4 ring-yellow-400 shadow-lg">
+        Teklif Al
+      </a>
+    </div>
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-yellow-400">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Hizmetler -->
+  <section id="services" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+    <h2 class="text-4xl font-extrabold text-center mb-14" data-aos="fade-up" data-aos-duration="1200">Hizmetlerimiz</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <!-- Mutfak -->
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+        <svg class="w-14 h-14 mx-auto mb-5 text-orange-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
+          <title>Mutfak İkonu</title>
+          <path d="M3 3h18v2H3V3zm0 4h4v14H3V7zm6 0h12v14H9V7zm2 2v10h8V9h-8z"/>
+        </svg>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900">Mutfak Dolapları</h3>
+        <p class="text-gray-600 text-base leading-relaxed">Ergonomik, estetik ve dayanıklı mutfak dolapları tasarımı ve üretimi.</p>
+      </div>
+      <!-- Gardrop -->
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+        <svg class="w-14 h-14 mx-auto mb-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
+          <title>Gardrop İkonu</title>
+          <path d="M4 3h16v18H4V3zm2 2v14h5V5H6zm7 0v14h5V5h-5z"/>
+        </svg>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900">Gardroplar</h3>
+        <p class="text-gray-600 text-base leading-relaxed">İç tasarımı fonksiyonel, şık ve kullanışlı gardroplar.</p>
+      </div>
+      <!-- TV Ünitesi -->
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+        <svg class="w-14 h-14 mx-auto mb-5 text-orange-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
+          <title>TV Ünitesi İkonu</title>
+          <path d="M3 5h18v10H3V5zm2 2v6h14V7H5zm0 10h2v2H5v-2zm4 0h6v2H9v-2zm10 0h-2v2h2v-2z"/>
+        </svg>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900">TV Ünitesi</h3>
+        <p class="text-gray-600 text-base leading-relaxed">Estetik ve fonksiyonel salon mobilyaları tasarımı.</p>
+      </div>
+      <!-- Vestiyer -->
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="400">
+        <svg class="w-14 h-14 mx-auto mb-5 text-yellow-700" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
+          <title>Vestiyer İkonu</title>
+          <path d="M4 3h16v18H4V3zm2 2v14h5V5H6zm7 0v14h5V5h-5z"/>
+        </svg>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900">Vestiyer</h3>
+        <p class="text-gray-600 text-base leading-relaxed">Düzenli, modern ve işlevsel giriş alanları çözümleri.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projeler (örnek) -->
+  <section id="projects" class="py-20 px-6 md:px-12 max-w-7xl mx-auto bg-gray-50 rounded-lg shadow-lg" data-aos="fade-up" data-aos-duration="1500">
+    <h2 class="text-4xl font-extrabold text-center mb-14">Tamamlanan Projelerimiz</h2>
+    <p class="text-center text-gray-700 max-w-3xl mx-auto mb-12">
+      Gerçekleştirdiğimiz özel ölçü mobilya projelerimizle müşterilerimizin hayatını kolaylaştırıyoruz. İşte bazı örnekler:
+    </p>
+    <!-- Buraya bir galeri veya slider ekleyebilirsiniz -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105">
+        <img src="img/mutfak.jpg" alt="Modern Mutfak Projesi" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="font-semibold text-lg mb-2">Modern Mutfak</h3>
+          <p class="text-gray-600 text-sm">Şık ve fonksiyonel mutfak tasarımı.</p>
+        </div>
+      </div>
+      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105">
+        <img src="img/gardrop.jpg" alt="Gardrop Projesi" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="font-semibold text-lg mb-2">Fonksiyonel Gardrop</h3>
+          <p class="text-gray-600 text-sm">Depolama alanı maksimum, tasarımı estetik.</p>
+        </div>
+      </div>
+      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105">
+        <img src="img/tv-unit.jpg" alt="TV Ünitesi Projesi" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="font-semibold text-lg mb-2">Modern TV Ünitesi</h3>
+          <p class="text-gray-600 text-sm">Salonunuza şıklık katan mobilyalar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- İletişim -->
+<!-- İletişim -->
+<section id="contact" class="py-20 px-6 md:px-12 max-w-4xl mx-auto">
+  <h2 class="text-4xl font-extrabold text-center mb-12" data-aos="fade-up">Bize Ulaşın</h2>
+
+  <div id="formSuccess" class="hidden bg-green-100 border border-green-300 text-green-700 px-4 py-3 rounded mb-6 text-center">
+    Mesajınız başarıyla gönderildi. Teşekkür ederiz! 🎉
+  </div>
+
+  <form 
+    id="contactForm"
+    action="https://formsubmit.co/ajax/tuncyyldrm@gmail.com" 
+    method="POST"
+    class="bg-white rounded-lg shadow-lg p-8 max-w-xl mx-auto" 
+    data-aos="fade-up" 
+    data-aos-delay="200"
+  >
+    <input type="hidden" name="_captcha" value="false">
+
+    <label for="name" class="block mb-2 font-semibold text-gray-700">İsim</label>
+    <input type="text" id="name" name="name" placeholder="Adınız" required class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-yellow-400 focus:outline-none" />
+
+    <label for="email" class="block mb-2 font-semibold text-gray-700">E-posta</label>
+    <input type="email" id="email" name="email" placeholder="ornek@mail.com" required class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-yellow-400 focus:outline-none" />
+
+    <label for="message" class="block mb-2 font-semibold text-gray-700">Mesajınız</label>
+    <textarea id="message" name="message" rows="5" placeholder="Mesajınızı yazınız..." required class="w-full mb-6 px-4 py-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-yellow-400 focus:outline-none"></textarea>
+
+    <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-4 rounded-lg transition transform hover:scale-105 focus:ring-4 ring-yellow-400 shadow-lg">
+      Gönder
+    </button>
+  </form>
+</section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        successMsg.classList.remove('hidden');
+        form.reset();
+      } else {
+        alert("Gönderim başarısız oldu. Lütfen tekrar deneyin.");
+      }
+    } catch (error) {
+      alert("Bir hata oluştu. Lütfen bağlantınızı kontrol edin.");
+    }
+  });
+</script>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left">
+        <h3 class="text-2xl font-extrabold text-yellow-400 mb-3">Mobilia</h3>
+        <p>Özel ölçü mobilya tasarımı ve üretimi. Antalya bölgesinde kaliteli hizmet.</p>
+        <p class="mt-4">📞 <a href="tel:+905306675659" class="hover:text-yellow-400 transition">+90 530 667 56 59</a></p>
+        <p>📍 Antalya, Türkiye</p>
+        <p>✉️ <a href="mailto:info@mobilia.com.tr" class="hover:text-yellow-400 transition">info@mobilia.com.tr</a></p>
+      </div>
+      <div class="flex space-x-6 text-yellow-400 text-3xl">
+        <a href="https://www.instagram.com/mobiliadecor07" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-yellow-300 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-8 h-8">
+            <title>Instagram</title>
+            <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 2A3.75 3.75 0 004 7.75v8.5A3.75 3.75 0 007.75 20h8.5a3.75 3.75 0 003.75-3.75v-8.5A3.75 3.75 0 0016.25 4h-8.5zm4.25 2a5.25 5.25 0 110 10.5 5.25 5.25 0 010-10.5zm0 2a3.25 3.25 0 100 6.5 3.25 3.25 0 000-6.5zm4.8-.6a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z"/>
+          </svg>
+        </a>
+        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-yellow-300 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-8 h-8">
+            <title>Facebook</title>
+            <path d="M22 12a10 10 0 10-11.5 9.87v-7h-2v-3h2v-2c0-2 1.2-3 3-3h2v3h-2c-.7 0-1 .3-1 1v2h3l-1 3h-2v7A10 10 0 0022 12z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="mt-10 text-center text-gray-500 text-sm">&copy; 2025 Mobilia. Tüm hakları saklıdır.</div>
+  </footer>
+
+  <!-- Sabit WhatsApp Butonu -->
+  <a href="https://wa.me/905306675659" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="fixed bottom-6 right-6 bg-green-500 text-white p-5 rounded-full shadow-lg hover:bg-green-600 transition z-50 focus:ring-4 ring-green-400">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-7 h-7">
+      <title>WhatsApp</title>
+      <path d="M20.52 3.48a11.85 11.85 0 00-16.77 16.77l-1.62 5.92 6.1-1.59a11.82 11.82 0 0012.3-20.97zm-8.03 15.72c-2.04 0-3.92-.62-5.51-1.68l-.39-.24-3.64.95 1-3.55-.26-.37a8.71 8.71 0 0113.16-11.26 8.7 8.7 0 012.6 6.18 8.72 8.72 0 01-8.16 8.77zm4.2-5.68c-.23-.11-1.37-.68-1.58-.75-.21-.08-.37-.11-.53.11s-.61.75-.74.9c-.14.16-.29.18-.53.06-.23-.11-.97-.36-1.85-1.14-.68-.61-1.14-1.37-1.27-1.6-.13-.23-.01-.35.1-.46.1-.1.23-.27.34-.41.11-.14.15-.23.23-.38.08-.14.04-.26-.02-.38-.07-.11-.53-1.27-.72-1.74-.19-.46-.39-.4-.53-.41-.14 0-.3 0-.46 0s-.38.05-.58.28c-.2.23-.77.75-.77 1.82 0 1.07.79 2.1.9 2.25.11.14 1.55 2.36 3.76 3.31.53.23.94.37 1.26.47.53.16 1.02.14 1.4.09.43-.06 1.37-.56 1.56-1.11.2-.54.2-1 .14-1.11-.06-.11-.21-.17-.44-.29z"/>
+    </svg>
+  </a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+  <script>
+    AOS.init({
+      once: true,
+      duration: 1000,
+    });
+  </script>
+</body>
+</html>
