@@ -1,34 +1,79 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <!-- Temel Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mobilia | Özel Ölçü Mobilya Tasarımı</title>
-  <!-- Apple cihazlar için -->
-  <link rel="apple-touch-icon" sizes="180x180" type="image/png" href="img/favicon.png" />
-  <!-- 32x32 favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
-  <!-- 16x16 favicon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <meta name="description" content="Antalya içi özel ölçü mobilya tasarımı ve üretimi - Mutfak, Gardırop, TV Ünitesi, Vestiyer" />
+  <!-- Başlık ve Açıklama (SEO) -->
+  <title>Antalya Özel Ölçü Mobilya - Mutfak, Gardırop, TV Ünitesi | Mobilia</title>
+  <meta name="description" content="Mobilia, Antalya'da özel ölçü mutfak dolapları, gardroplar, vestiyer ve TV üniteleri tasarımı ve üretimi yapar. Kaliteli, estetik ve fonksiyonel mobilyalar sunar." />
+  <meta name="keywords" content="Antalya özel ölçü mobilya, mutfak dolabı, gardrop, TV ünitesi, vestiyer, özel tasarım mobilya, özel üretim" />
   <meta name="author" content="Mobilia" />
-  <link rel="canonical" href="https://mobilia.com.tr/" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mobiliadecor.vercel.app/" />
+
+  <!-- Sosyal Medya (Open Graph) -->
+  <meta property="og:title" content="Mobilia - Antalya Özel Ölçü Mobilya Tasarımı" />
+  <meta property="og:description" content="Mutfak, Gardırop, TV Ünitesi ve Vestiyer çözümleri. Antalya'da özel üretim." />
+  <meta property="og:image" content="https://mobiliadecor.vercel.app/img/bg.jpg" />
+  <meta property="og:url" content="https://mobiliadecor.vercel.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mobilia" />
+
+  <!-- Twitter Kartı -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mobilia - Antalya Özel Mobilya Tasarımı" />
+  <meta name="twitter:description" content="Antalya'da özel ölçü mutfak dolapları, gardroplar, vestiyer ve TV ünitesi tasarımları." />
+  <meta name="twitter:image" content="https://mobiliadecor.vercel.app/img/bg.jpg" />
+
+  <!-- Favicon & Apple Icon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png" />
+  <meta name="theme-color" content="#facc15" />
+
+  <!-- Fonts & Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <!-- AOS animasyonlar için -->
+
+  <!-- AOS (Scroll Animations) -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Yapılandırılmış Veri (Schema.org / JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Mobilia",
+    "image": "https://mobiliadecor.vercel.app/img/logo.png",
+    "url": "https://mobiliadecor.vercel.app/",
+    "telephone": "+905306675659",
+    "email": "info@mobilia.com.tr",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Antalya",
+      "addressRegion": "Antalya",
+      "addressCountry": "TR"
+    },
+    "description": "Antalya'da özel ölçü mutfak, gardırop, vestiyer ve TV ünitesi üretimi yapan profesyonel mobilya firması."
+  }
+  </script>
+
+  <!-- Stil -->
   <style>
     body {
       font-family: 'Inter', sans-serif;
     }
-    /* Focus için ring efekti */
     a:focus, button:focus {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.75);
+      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.75);
     }
   </style>
 </head>
+
 <body class="bg-white text-gray-900 scroll-smooth">
 
   <!-- Navbar -->
@@ -162,7 +207,6 @@
     </div>
   </section>
 
-  <!-- İletişim -->
 <!-- İletişim -->
 <section id="contact" class="py-20 px-6 md:px-12 max-w-4xl mx-auto">
   <h2 class="text-4xl font-extrabold text-center mb-12" data-aos="fade-up">Bize Ulaşın</h2>
@@ -273,5 +317,6 @@
       duration: 1000,
     });
   </script>
+  
 </body>
 </html>
