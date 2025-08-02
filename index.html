@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth" x-data="{
+  darkMode: document.documentElement.classList.contains('dark')
+}" x-init="$watch('darkMode', value => {
+  document.documentElement.classList.toggle('dark', value);
+  localStorage.setItem('theme', value ? 'dark' : 'light');
+})" :class="{ 'dark': darkMode }">
+
 <head>
   <!-- Temel Meta -->
   <meta charset="UTF-8" />
@@ -67,6 +73,28 @@
     "description": "Antalya'da özel ölçü mutfak, gardırop, vestiyer ve TV ünitesi üretimi yapan profesyonel mobilya firması."
   }
   </script>
+  <script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          primary: '#facc15'
+        }
+      }
+    }
+  }
+</script>
+<script>
+  const userTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (userTheme === 'dark' || (!userTheme && systemPrefersDark)) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+</script>
   <!-- Stil -->
   <style>
     body {
@@ -79,23 +107,67 @@
     [x-cloak] { display: none !important; }
   </style>
 </head>
-<body class="bg-white text-gray-900 scroll-smooth">
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Tema Butonu -->
+
+  <button 
+    x-data="{
+    darkMode: localStorage.getItem('theme') === 'dark' 
+      || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  }"
+  x-init="$watch('darkMode', value => {
+    document.documentElement.classList.toggle('dark', value);
+    localStorage.setItem('theme', value ? 'dark' : 'light');
+  })"
+    @click="darkMode = !darkMode"
+    class="absolute top-20 right-6 z-50 p-2 rounded-full bg-gray-800 dark:bg-gray-100 hover:ring-2 ring-yellow-400 transition dark:text-gray-800"
+    aria-label="Tema Değiştir"
+  >
+    <!-- Güneş (Aydınlık) -->
+    <svg 
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6 text-yellow-500 bg-gray-800"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      :class="{ 'hidden': darkMode }"
+      x-cloak
+    >
+      <title>Karanlık Tema</title>
+      <path d="M21.75 13.005A9 9 0 0 1 10.995 2.25 9 9 0 1 0 21.75 13.005z"/>
+    </svg>
+
+    <!-- Ay (Karanlık) -->
+    <svg 
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6 text-yellow-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+      :class="{ 'hidden': !darkMode }"
+      x-cloak
+    >
+      <title>Aydınlık Tema</title>
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4V2m0 20v-2m4.24-13.66l1.42-1.42M6.34 17.66l-1.42 1.42M20 12h2M2 12h2m13.66 4.24l1.42 1.42M6.34 6.34L4.92 4.92M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+  </button>
 <!-- Navbar -->
-<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-md z-50" x-data="{ open: false }">
+<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-md z-50 dark:bg-gray-900 dark:text-gray-100" x-data="{ open: false }">
   <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
     <!-- Logo -->
     <a href="#" class="text-2xl font-extrabold text-yellow-600 hover:text-yellow-700 transition" aria-label="Mobilia">
       <img loading="lazy" src="img/logo.png" alt="Mobilia Logo" class="h-10">
     </a>
     <!-- Masaüstü Menü -->
-    <ul class="hidden md:flex space-x-8 font-semibold text-gray-700">
+    <ul class="hidden md:flex space-x-8 font-semibold text-gray-700 dark:bg-gray-900 dark:text-gray-100">
       <li><a href="#hero" class="hover:text-yellow-600 transition">Anasayfa</a></li>
       <li><a href="#services" class="hover:text-yellow-600 transition">Hizmetler</a></li>
       <li><a href="#projects" class="hover:text-yellow-600 transition">Projeler</a></li>
       <li><a href="#contact" class="hover:text-yellow-600 transition">İletişim</a></li>
     </ul>
     <!-- Mobil Menü Butonu -->
-    <button @click="open = !open" class="md:hidden text-gray-700 hover:text-yellow-600 focus:outline-none" aria-label="Menüyü Aç/Kapat">
+    <button @click="open = !open" class="md:hidden text-gray-700 hover:text-yellow-600 focus:outline-none dark:bg-gray-900 dark:text-gray-100" aria-label="Menüyü Aç/Kapat">
       <svg xmlns="http://www.w3.org/2000/svg" :class="open ? 'hidden' : 'block'" x-cloak class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
       </svg>
@@ -103,9 +175,10 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
+    
   </div>
   <!-- Mobil Açılır Menü -->
-  <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" x-cloak class="md:hidden px-6 pt-2 pb-4 space-y-3 font-semibold text-gray-700 bg-white bg-opacity-95 backdrop-blur-sm shadow-md rounded-b-xl">
+  <div x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" x-cloak class="md:hidden px-6 pt-2 pb-4 space-y-3 font-semibold text-gray-700 bg-white bg-opacity-95 backdrop-blur-sm shadow-md rounded-b-xl dark:bg-gray-800 dark:text-gray-100">
     <a href="#hero" class="block hover:text-yellow-600 transition">Anasayfa</a>
     <a href="#services" class="block hover:text-yellow-600 transition">Hizmetler</a>
     <a href="#projects" class="block hover:text-yellow-600 transition">Projeler</a>
@@ -113,7 +186,7 @@
   </div>
 </nav>
   <!-- Hero -->
-  <section id="hero" class="relative bg-cover bg-center min-h-screen flex items-center justify-center text-white pt-20" style="background-image: url('img/bg.jpg');">
+  <section id="hero" class="relative bg-cover bg-center min-h-screen flex items-center justify-center text-white pt-20 dark:bg-gray-900 dark:text-gray-100" style="background-image: url('img/bg.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-60"></div>
     <div class="relative z-10 text-center px-6 max-w-3xl" data-aos="fade-up" data-aos-duration="1500">
       <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">Özel Ölçü Mobilya Tasarımı</h1>
@@ -134,71 +207,71 @@
     <h2 class="text-4xl font-extrabold text-center mb-14" data-aos="fade-up" data-aos-duration="1200">Hizmetlerimiz</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
       <!-- Mutfak -->
-      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="100">
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer dark:bg-gray-800" data-aos="zoom-in" data-aos-delay="100">
         <svg class="w-14 h-14 mx-auto mb-5 text-orange-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
           <title>Mutfak İkonu</title>
           <path d="M3 3h18v2H3V3zm0 4h4v14H3V7zm6 0h12v14H9V7zm2 2v10h8V9h-8z"/>
         </svg>
-        <h3 class="font-semibold text-2xl mb-3 text-gray-900">Mutfak Dolapları</h3>
-        <p class="text-gray-600 text-base leading-relaxed">Ergonomik, estetik ve dayanıklı mutfak dolapları tasarımı ve üretimi.</p>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900 dark:text-gray-50">Mutfak Dolapları</h3>
+        <p class="text-gray-600 text-base leading-relaxed dark:text-gray-300">Ergonomik, estetik ve dayanıklı mutfak dolapları tasarımı ve üretimi.</p>
       </div>
       <!-- Gardrop -->
-      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="200">
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer dark:bg-gray-800" data-aos="zoom-in" data-aos-delay="200">
         <svg class="w-14 h-14 mx-auto mb-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
           <title>Gardrop İkonu</title>
           <path d="M4 3h16v18H4V3zm2 2v14h5V5H6zm7 0v14h5V5h-5z"/>
         </svg>
-        <h3 class="font-semibold text-2xl mb-3 text-gray-900">Gardroplar</h3>
-        <p class="text-gray-600 text-base leading-relaxed">İç tasarımı fonksiyonel, şık ve kullanışlı gardroplar.</p>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900 dark:text-gray-50">Gardroplar</h3>
+        <p class="text-gray-600 text-base leading-relaxed dark:text-gray-300">İç tasarımı fonksiyonel, şık ve kullanışlı gardroplar.</p>
       </div>
       <!-- TV Ünitesi -->
-      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer dark:bg-gray-800" data-aos="zoom-in" data-aos-delay="300">
         <svg class="w-14 h-14 mx-auto mb-5 text-orange-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
           <title>TV Ünitesi İkonu</title>
           <path d="M3 5h18v10H3V5zm2 2v6h14V7H5zm0 10h2v2H5v-2zm4 0h6v2H9v-2zm10 0h-2v2h2v-2z"/>
         </svg>
-        <h3 class="font-semibold text-2xl mb-3 text-gray-900">TV Ünitesi</h3>
-        <p class="text-gray-600 text-base leading-relaxed">Estetik ve fonksiyonel salon mobilyaları tasarımı.</p>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900 dark:text-gray-50">TV Ünitesi</h3>
+        <p class="text-gray-600 text-base leading-relaxed dark:text-gray-300">Estetik ve fonksiyonel salon mobilyaları tasarımı.</p>
       </div>
       <!-- Vestiyer -->
-      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer" data-aos="zoom-in" data-aos-delay="400">
+      <div class="bg-white shadow-lg rounded-xl p-8 text-center hover:shadow-2xl transition transform hover:scale-105 cursor-pointer dark:bg-gray-800" data-aos="zoom-in" data-aos-delay="400">
         <svg class="w-14 h-14 mx-auto mb-5 text-yellow-700" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" role="img">
           <title>Vestiyer İkonu</title>
           <path d="M4 3h16v18H4V3zm2 2v14h5V5H6zm7 0v14h5V5h-5z"/>
         </svg>
-        <h3 class="font-semibold text-2xl mb-3 text-gray-900">Vestiyer</h3>
-        <p class="text-gray-600 text-base leading-relaxed">Düzenli, modern ve işlevsel giriş alanları çözümleri.</p>
+        <h3 class="font-semibold text-2xl mb-3 text-gray-900 dark:text-gray-50">Vestiyer</h3>
+        <p class="text-gray-600 text-base leading-relaxed dark:text-gray-300">Düzenli, modern ve işlevsel giriş alanları çözümleri.</p>
       </div>
     </div>
   </section>
 
   <!-- Projeler (örnek) -->
-  <section id="projects" class="py-20 px-6 md:px-12 max-w-7xl mx-auto bg-gray-50 rounded-lg shadow-lg" data-aos="fade-up" data-aos-duration="1500">
+  <section id="projects" class="py-20 px-6 md:px-12 max-w-7xl mx-auto bg-gray-50 rounded-lg shadow-lg dark:bg-gray-800" data-aos="fade-up" data-aos-duration="1500">
     <h2 class="text-4xl font-extrabold text-center mb-14">Tamamlanan Projelerimiz</h2>
-    <p class="text-center text-gray-700 max-w-3xl mx-auto mb-12">
+    <p class="text-center text-gray-700 max-w-3xl mx-auto mb-12 dark:text-gray-200">
       Gerçekleştirdiğimiz özel ölçü mobilya projelerimizle müşterilerimizin hayatını kolaylaştırıyoruz. İşte bazı örnekler:
     </p>
     <!-- Buraya bir galeri veya slider ekleyebilirsiniz -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105">
+      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105 dark:bg-gray-900">
         <img loading="lazy" src="img/mutfak.jpg" alt="Modern Mutfak Projesi" class="w-full h-48 object-cover" />
         <div class="p-4">
           <h3 class="font-semibold text-lg mb-2">Modern Mutfak</h3>
-          <p class="text-gray-600 text-sm">Şık ve fonksiyonel mutfak tasarımı.</p>
+          <p class="text-gray-600 text-sm dark:text-gray-300">Şık ve fonksiyonel mutfak tasarımı.</p>
         </div>
       </div>
-      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105">
+      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105 dark:bg-gray-900">
         <img loading="lazy" src="img/gardrop.jpg" alt="Gardrop Projesi" class="w-full h-48 object-cover" />
         <div class="p-4">
           <h3 class="font-semibold text-lg mb-2">Fonksiyonel Gardrop</h3>
-          <p class="text-gray-600 text-sm">Depolama alanı maksimum, tasarımı estetik.</p>
+          <p class="text-gray-600 text-sm dark:text-gray-300">Depolama alanı maksimum, tasarımı estetik.</p>
         </div>
       </div>
-      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105">
+      <div class="rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-xl transition transform hover:scale-105 dark:bg-gray-900">
         <img loading="lazy" src="img/tv-unit.jpg" alt="TV Ünitesi Projesi" class="w-full h-48 object-cover" />
         <div class="p-4">
           <h3 class="font-semibold text-lg mb-2">Modern TV Ünitesi</h3>
-          <p class="text-gray-600 text-sm">Salonunuza şıklık katan mobilyalar.</p>
+          <p class="text-gray-600 text-sm dark:text-gray-300">Salonunuza şıklık katan mobilyalar.</p>
         </div>
       </div>
     </div>
@@ -207,7 +280,7 @@
 <!-- İletişim -->
 <section id="contact" class="py-20 px-6 md:px-12 max-w-4xl mx-auto">
   <h2 class="text-4xl font-extrabold text-center mb-4" data-aos="fade-up">Hızlı İletişim</h2>
-  <p class="text-center text-gray-600 mb-10" data-aos="fade-up" data-aos-delay="100">
+  <p class="text-center text-gray-600 mb-10 dark:text-gray-300" data-aos="fade-up" data-aos-delay="100">
     Aşağıdaki formu doldurun, biz sizi arayalım.
   </p>
 
@@ -215,24 +288,17 @@
     Mesajınız başarıyla gönderildi. En kısa sürede sizi arayacağız. Teşekkür ederiz! 📞
   </div>
 
-  <form 
-    id="contactForm"
-    action="https://formsubmit.co/ajax/tuncyyldrm@gmail.com" 
-    method="POST"
-    class="bg-white rounded-lg shadow-lg p-6 max-w-xl mx-auto" 
-    data-aos="fade-up" 
-    data-aos-delay="200"
-  >
+  <form id="contactForm" action="https://formsubmit.co/ajax/tuncyyldrm@gmail.com" method="POST" class="bg-white rounded-lg shadow-lg p-6 max-w-xl mx-auto dark:bg-gray-800" data-aos="fade-up" data-aos-delay="200">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="box">
 
-    <label for="name" class="block mb-2 font-semibold text-gray-700">Adınız</label>
+    <label for="name" class="block mb-2 font-semibold text-gray-700 dark:text-gray-100">Adınız</label>
     <input type="text" id="name" name="name" placeholder="Adınızı yazınız" required class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none" />
 
-    <label for="phone" class="block mb-2 font-semibold text-gray-700">Telefon Numaranız</label>
+    <label for="phone" class="block mb-2 font-semibold text-gray-700 dark:text-gray-100">Telefon Numaranız</label>
     <input type="text" id="phone" name="phone" placeholder="05xx xxx xx xx" required class="w-full mb-4 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none" />
 
-    <label for="message" class="block mb-2 font-semibold text-gray-700">İstek veya Not</label>
+    <label for="message" class="block mb-2 font-semibold text-gray-700 dark:text-gray-100">İstek veya Not</label>
     <textarea id="message" name="message" rows="4" placeholder="Örn: Mutfak dolabı yaptırmak istiyorum, beni arayın." required class="w-full mb-6 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:outline-none"></textarea>
 
     <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-4 rounded-lg transition hover:scale-105 focus:ring-4 ring-yellow-400 shadow-lg">
@@ -273,7 +339,7 @@
 
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 py-12 mt-20">
+  <footer class="bg-gray-900 text-gray-300 py-12 mt-20 dark:bg-gray-800 dark:text-gray-200">
     <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="text-center md:text-left">
         <h3 class="text-2xl font-extrabold text-yellow-400 mb-3 md:text-left text-center">    
@@ -302,7 +368,7 @@
       </div>
     </div>
 
-    <div class="mt-10 text-center text-gray-500 text-sm">
+    <div class="mt-10 text-center text-gray-500 text-sm dark:text-gray-200">
       &copy; 2025 Mobilia. Tüm hakları saklıdır. <br>
       <a target="_blank" rel="noopener noreferrer" href="https://tuncyyldrm.vercel.app" class="text-yellow-500 hover:underline">
         Tuncay YILDIRIM
